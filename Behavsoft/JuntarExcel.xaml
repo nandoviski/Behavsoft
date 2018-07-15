@@ -1,0 +1,44 @@
+﻿<Window x:Class="Behavsoft.JuntarExcel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Juntar Arquivos Excel" Height="400" Width="800">
+    <Grid>
+        <ListBox Name="lbAcao" Margin="10,42.029,0,0" HorizontalAlignment="Left" Width="559.5" Height="277.011" VerticalAlignment="Top"/>
+        
+        <ComboBox x:Name="cbTipoComportamento" Margin="0,10.196,14,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="172"/>
+        
+        <GroupBox Name="gbTeclas" Header="Teclas" Margin="0,37.196,10,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Right" Width="176">
+            <Grid >
+                <TextBlock Margin="10,10,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="A" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaA" Margin="25,7,0,0" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="129"/>
+
+                <TextBlock Margin="10,35,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="S" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaS" Height="23" Margin="25,32,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,60,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="D" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaD" Height="23" Margin="25,57,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,85,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="F" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaF" Height="23" Margin="25,82,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,110,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="H" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaH" Height="23" Margin="25,107,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,135,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="J" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaJ" Height="23" Margin="25,132,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,160,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="K" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaK" Height="23" Margin="25,157,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <TextBlock Margin="10,185,0,0" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="LS" VerticalAlignment="Top" Width="10"/>
+                <TextBox Name="txtTeclaL" Height="23" Margin="25,182,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Buscar Excel" Name="btnBuscarExcels" HorizontalAlignment="Left" Margin="13.5,332.04,0,0" VerticalAlignment="Top" Width="127" Click="btnBuscarExcels_Click"/>
+        <Button Content="Gerar" x:Name="btnGerarExcel" HorizontalAlignment="Left" Margin="145.5,332.04,0,0" VerticalAlignment="Top" Width="75" Click="btnGerarExcel_Click"/>
+        <TextBox x:Name="txtSalvarEm" HorizontalAlignment="Left" Height="23" Margin="68.913,14.029,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="465.587"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,17.029,0,0" TextWrapping="Wrap" Text="Salvar em:" VerticalAlignment="Top"/>
+        <Button Content="..." x:Name="btnSalvarEm" HorizontalAlignment="Left" Margin="539.5,14.069,0,0" VerticalAlignment="Top" Width="30" Click="btnSalvarEm_Click"/>
+        <ComboBox x:Name="cbTipoExcel" Margin="0,297.08,14,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="172"/>
+    </Grid>
+</Window>
