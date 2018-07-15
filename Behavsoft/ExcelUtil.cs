@@ -265,7 +265,8 @@ namespace Behavsoft
                 xlWorkBook = xlApp.Workbooks.Add(misValue);
 
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                
+
+
                 List<ItemCalculo> frequencia = new List<ItemCalculo>();
                 int index;
                 foreach (TemposItem item in tempos)

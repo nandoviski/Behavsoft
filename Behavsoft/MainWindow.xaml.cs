@@ -21,18 +21,30 @@ namespace Behavsoft
     /// </summary>
     public partial class MainWindow : Window
     {
-        TimeSpan? ultimoClique;
-        Key ultimaTecla;
-        List<TemposItem> tempos;
-        VideoState estadoVideo;
-        DispatcherTimer timer;
-        bool isDragging;
-        TimeSpan? inicioAnalise;
-        int ultimoItemSelecionado = -1;
+        private TimeSpan? ultimoClique;
+        private Key ultimaTecla;
+        private List<TemposItem> tempos;
+        private VideoState estadoVideo;
+        private DispatcherTimer timer;
+        private bool isDragging;
+        private TimeSpan? inicioAnalise;
+        private int ultimoItemSelecionado = -1;
 
-        string caminhoLocal => AppDomain.CurrentDomain.BaseDirectory;
+        private string _caminhoLocal
+        {
+            get
+            {
+                return AppDomain.CurrentDomain.BaseDirectory;
+            }
+        }
 
-        string caminhoXml => caminhoLocal + "ConfiguracaoMenu.xml";
+        private string caminhoXml
+        {
+            get
+            {
+                return _caminhoLocal + "ConfiguracaoMenu.xml";
+            }
+        }
 
         public MainWindow()
         {
@@ -56,7 +68,7 @@ namespace Behavsoft
             timer.Tick += timer_Tick;
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             if (!isDragging)
                 sldBarraTempo.Value = VideoControl.Position.TotalSeconds;
@@ -81,7 +93,7 @@ namespace Behavsoft
             }
         }
 
-        void cbTipoComportamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbTipoComportamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbTipoComportamento.SelectedItem != null)
             {
@@ -113,7 +125,7 @@ namespace Behavsoft
             }
         }
 
-        void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (estadoVideo == VideoState.Played)
             {
@@ -199,7 +211,7 @@ namespace Behavsoft
             }
         }
 
-        TemposItem BuscarUltimoTempo(Key tecla)
+        private TemposItem BuscarUltimoTempo(Key tecla)
         {
             if (tempos != null && tempos.Count > 0)
             {
@@ -213,7 +225,7 @@ namespace Behavsoft
             return null;
         }
 
-        void BrowseButton_Click_1(object sender, RoutedEventArgs e)
+        private void BrowseButton_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -239,15 +251,15 @@ namespace Behavsoft
             }
             catch
             {
-                MessageBox.Show("Erro ao carregar o vídeo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Erro ao carregar o vídeo", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        void PlayButton_Click_1(object sender, RoutedEventArgs e)
+        private void PlayButton_Click_1(object sender, RoutedEventArgs e)
         {
             if (MediaPathTextBox.Text.Length <= 0)
             {
-                MessageBox.Show("Você deve selecionar um video", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Você deve selecionar um video", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -282,14 +294,14 @@ namespace Behavsoft
             }
         }
 
-        void PauseButton_Click_1(object sender, RoutedEventArgs e)
+        private void PauseButton_Click_1(object sender, RoutedEventArgs e)
         {
             VideoControl.Pause();
             estadoVideo = VideoState.Paused;
             timer.Stop();
         }
 
-        void StopButton_Click_1(object sender, RoutedEventArgs e)
+        private void StopButton_Click_1(object sender, RoutedEventArgs e)
         {
             ultimoClique = null;
             FinalizarTodasTeclas(VideoControl.Position);
@@ -303,7 +315,7 @@ namespace Behavsoft
             inicioAnalise = null;
         }
 
-        void MostrarTempos()
+        private void MostrarTempos()
         {
             lbAcao.Items.Clear();
 
@@ -323,35 +335,35 @@ namespace Behavsoft
                 lbAcao.ScrollIntoView(lbAcao.Items[lbAcao.Items.Count - 1]);
         }
 
-        void BloquearComponentesConfig(bool bloquear)
+        private void BloquearComponentesConfig(bool bloquear)
         {
             BrowseButton.IsEnabled = !bloquear;
             gbTeclas.IsEnabled = !bloquear;
             cbTipoComportamento.IsEnabled = !bloquear;
         }
 
-        void btnSalvarComo_Click(object sender, RoutedEventArgs e)
+        private void btnSalvarComo_Click(object sender, RoutedEventArgs e)
         {
             if (estadoVideo != VideoState.Stopped)
             {
-                MessageBox.Show("Não é possivel salvar enquanto o video estiver rodando", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Não é possivel salvar enquanto o video estiver rodando", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
             if (tempos == null || tempos.Count < 1)
             {
-                MessageBox.Show("Não existe dados a serem salvos", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Não existe dados a serem salvos", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            var sabeDlg = new Microsoft.Win32.SaveFileDialog();
+            Microsoft.Win32.SaveFileDialog sabeDlg = new Microsoft.Win32.SaveFileDialog();
             sabeDlg.InitialDirectory = @"c:\";
-            sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+            sabeDlg.Filter = "Pasta de Trabalho do Excel 97-2003|*.xls|Pasta de Trabalho do Excel|*.xlsx";
             bool? ret = sabeDlg.ShowDialog();
 
             if (ret.HasValue && ret.Value)
             {
-                var util = new ExcelUtil();
+                ExcelUtil util = new ExcelUtil();
                 util.JanelaPai = this;
                 util.GerarExcel(sabeDlg.FileName, tempos);
 
@@ -360,12 +372,12 @@ namespace Behavsoft
             }
         }
 
-        void sldBarraTempo_DragStarted_1(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        private void sldBarraTempo_DragStarted_1(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             isDragging = true;
         }
 
-        void sldBarraTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void sldBarraTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (isDragging)
                 VideoControl.Position = TimeSpan.FromSeconds(sldBarraTempo.Value);
@@ -379,14 +391,14 @@ namespace Behavsoft
             }
         }
 
-        void sldBarraTempo_DragCompleted_1(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        private void sldBarraTempo_DragCompleted_1(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             isDragging = false;
             //VideoControl.Position = TimeSpan.FromSeconds(sldBarraTempo.Value);
         }
 
         // Finaliza todas as teclas aberta a o clicar no Stop
-        void FinalizarTodasTeclas(TimeSpan final)
+        private void FinalizarTodasTeclas(TimeSpan final)
         {
             TimeSpan tempo = new TimeSpan(final.Hours, final.Minutes, final.Seconds);
 
@@ -398,7 +410,7 @@ namespace Behavsoft
             }
         }
 
-        string BuscarTextoAtalho(Key tecla)
+        private string BuscarTextoAtalho(Key tecla)
         {
             string retorno = string.Empty;
 
@@ -433,7 +445,7 @@ namespace Behavsoft
             return retorno;
         }
 
-        void MudarCorTecla(Key tecla, bool isPressionado)
+        private void MudarCorTecla(Key tecla, bool isPressionado)
         {
             switch (tecla)
             {
@@ -510,25 +522,25 @@ namespace Behavsoft
             }
         }
 
-        void miSair_Click(object sender, RoutedEventArgs e)
+        private void miSair_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        void miJuntarExcel_Click(object sender, RoutedEventArgs e)
+        private void miJuntarExcel_Click(object sender, RoutedEventArgs e)
         {
             ucJuntarExcel j = new ucJuntarExcel(caminhoXml);
             j.ShowDialog();
         }
 
-        void miNovoProtocolo_Click(object sender, RoutedEventArgs e)
+        private void miNovoProtocolo_Click(object sender, RoutedEventArgs e)
         {
             ucProtocoloNovo pn = new ucProtocoloNovo(caminhoXml);
             pn.ShowDialog();
             this.IniciarProtocolos();
         }
 
-        void miEditarProtocolo_Click(object sender, RoutedEventArgs e)
+        private void miEditarProtocolo_Click(object sender, RoutedEventArgs e)
         {
             if (cbTipoComportamento != null && cbTipoComportamento.Items.Count > 0)
             {
@@ -538,7 +550,7 @@ namespace Behavsoft
             }
         }
 
-        void IniciarProtocolos()
+        private void IniciarProtocolos()
         {
             if (!File.Exists(caminhoXml))
             {
@@ -591,7 +603,7 @@ namespace Behavsoft
             }
         }
 
-        void ProtocoloPadrao(ref XmlTextWriter xtw)
+        private void ProtocoloPadrao(ref XmlTextWriter xtw)
         {
             xtw.WriteStartElement("protocolo"); // proto ini
             xtw.WriteAttributeString("nome", "Labirinto Em Cruz Elevado");
@@ -654,7 +666,7 @@ namespace Behavsoft
             xtw.WriteEndElement(); // proto fim
         }
 
-        void CriaItemXml(ref XmlTextWriter xtw, string tecla, string nome)
+        private void CriaItemXml(ref XmlTextWriter xtw, string tecla, string nome)
         {
             xtw.WriteStartElement("item");
             xtw.WriteAttributeString("tecla", tecla);
@@ -662,7 +674,7 @@ namespace Behavsoft
             xtw.WriteEndElement();
         }
 
-        void LimparComboBoxProtocolo()
+        private void LimparComboBoxProtocolo()
         {
             // Limpar itens ComboBox
             if (cbTipoComportamento != null && cbTipoComportamento.Items.Count > 0)
