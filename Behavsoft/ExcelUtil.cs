@@ -317,7 +317,7 @@ namespace Behavsoft
                 //Mesclar
                 Excel.Range mesclarFr = xlWorkSheet.get_Range(xlWorkSheet.Cells[1, mesclarFrInicio], xlWorkSheet.Cells[1, mesclarFrFim]);
                 mesclarFr.Merge(true);
-                xlWorkSheet.Cells[1, mesclarFrInicio] = "Frequência";
+                xlWorkSheet.Cells[1, mesclarFrInicio] = "Frequency";
                 ((Excel.Range)xlWorkSheet.Cells[1, mesclarFrInicio]).Font.Bold = true;
                 ((Excel.Range)xlWorkSheet.Cells[1, mesclarFrInicio]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 //Borda
@@ -353,7 +353,7 @@ namespace Behavsoft
                 }
                 Excel.Range mesclarDu = xlWorkSheet.get_Range(xlWorkSheet.Cells[1, mesclarDrInicio], xlWorkSheet.Cells[1, mesclarDrFim]);
                 mesclarDu.Merge(true);
-                xlWorkSheet.Cells[1, mesclarDrInicio] = "Duração";
+                xlWorkSheet.Cells[1, mesclarDrInicio] = "Duration";
                 ((Excel.Range)xlWorkSheet.Cells[1, mesclarDrInicio]).Font.Bold = true;
                 ((Excel.Range)xlWorkSheet.Cells[1, mesclarDrInicio]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 //Borda
@@ -372,13 +372,13 @@ namespace Behavsoft
 
                 // Monta contagem teclas
                 int linhaCont = 2;
-                xlWorkSheet.Cells[1, 1] = "Tecla";
+                xlWorkSheet.Cells[1, 1] = "Key";
                 ((Excel.Range)xlWorkSheet.Cells[1, 1]).Font.Bold = true;
-                xlWorkSheet.Cells[1, 2] = "Início";
+                xlWorkSheet.Cells[1, 2] = "Start";
                 ((Excel.Range)xlWorkSheet.Cells[1, 2]).Font.Bold = true;
-                xlWorkSheet.Cells[1, 3] = "Fim";
+                xlWorkSheet.Cells[1, 3] = "End";
                 ((Excel.Range)xlWorkSheet.Cells[1, 3]).Font.Bold = true;
-                xlWorkSheet.Cells[1, 4] = "Duração (seg)";
+                xlWorkSheet.Cells[1, 4] = "Duration (sec)";
                 ((Excel.Range)xlWorkSheet.Cells[1, 4]).Font.Bold = true;
                 ((Excel.Range)xlWorkSheet.Columns[4]).AutoFit();
 
@@ -571,13 +571,13 @@ namespace Behavsoft
 
                 Excel.Range mesclarFr = xlWorkSheet.get_Range(xlWorkSheet.Cells[1, 2], xlWorkSheet.Cells[1, teclasUsadas.Count + 1]);
                 mesclarFr.Merge(true);
-                xlWorkSheet.Cells[1, 2] = "Frequência";
+                xlWorkSheet.Cells[1, 2] = "Frequency";
                 ((Excel.Range)xlWorkSheet.Cells[1, 2]).Font.Bold = true;
                 ((Excel.Range)xlWorkSheet.Cells[1, 2]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
                 Excel.Range mesclarDu = xlWorkSheet.get_Range(xlWorkSheet.Cells[1, teclasUsadas.Count + 2], xlWorkSheet.Cells[1, teclasUsadas.Count + 1 + teclasUsadas.Count]);
                 mesclarDu.Merge(true);
-                xlWorkSheet.Cells[1, teclasUsadas.Count + 2] = "Duração";
+                xlWorkSheet.Cells[1, teclasUsadas.Count + 2] = "Duration";
                 ((Excel.Range)xlWorkSheet.Cells[1, teclasUsadas.Count + 2]).Font.Bold = true;
                 ((Excel.Range)xlWorkSheet.Cells[1, teclasUsadas.Count + 2]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 

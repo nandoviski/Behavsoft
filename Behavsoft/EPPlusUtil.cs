@@ -11,8 +11,7 @@ namespace Behavsoft
 {
     public class EPPlusUtil
     {
-
-        public void GerarExcelTESTE(string caminhoCompleto, List<TemposItem> tempos)
+		public void GerarExcelTESTE(string caminhoCompleto, List<TemposItem> tempos)
         {
         //    object[] param = e.Argument as object[];
 
@@ -86,7 +85,7 @@ namespace Behavsoft
                     }
                     //Mesclar
                     xlWorkSheet.Cells[1, mesclarFrInicio, 1, mesclarFrFim].Merge = true;
-                    xlWorkSheet.Cells[1, mesclarFrInicio].Value = "Frequência";
+                    xlWorkSheet.Cells[1, mesclarFrInicio].Value = "Frequency";
                     ((ExcelRange)xlWorkSheet.Cells[1, mesclarFrInicio]).Style.Font.Bold = true;
                     ((ExcelRange)xlWorkSheet.Cells[1, mesclarFrInicio]).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     //Borda
@@ -121,7 +120,7 @@ namespace Behavsoft
                         colunaFr++;
                     }
                     xlWorkSheet.Cells[1, mesclarDrInicio, 1, mesclarDrFim].Merge = true;
-                    xlWorkSheet.Cells[1, mesclarDrInicio].Value = "Duração";
+                    xlWorkSheet.Cells[1, mesclarDrInicio].Value = "Duration";
                     ((ExcelRange)xlWorkSheet.Cells[1, mesclarDrInicio]).Style.Font.Bold = true;
                     ((ExcelRange)xlWorkSheet.Cells[1, mesclarDrInicio]).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     //Borda
@@ -140,13 +139,13 @@ namespace Behavsoft
 
                     // Monta contagem teclas
                     int linhaCont = 2;
-                    xlWorkSheet.Cells[1, 1].Value = "Tecla";
+                    xlWorkSheet.Cells[1, 1].Value = "Key";
                     ((ExcelRange)xlWorkSheet.Cells[1, 1]).Style.Font.Bold = true;
-                    xlWorkSheet.Cells[1, 2].Value = "Início";
+                    xlWorkSheet.Cells[1, 2].Value = "Start";
                     ((ExcelRange)xlWorkSheet.Cells[1, 2]).Style.Font.Bold = true;
-                    xlWorkSheet.Cells[1, 3].Value = "Fim";
+                    xlWorkSheet.Cells[1, 3].Value = "End";
                     ((ExcelRange)xlWorkSheet.Cells[1, 3]).Style.Font.Bold = true;
-                    xlWorkSheet.Cells[1, 4].Value = "Duração (seg)";
+                    xlWorkSheet.Cells[1, 4].Value = "Duration (sec)";
                     ((ExcelRange)xlWorkSheet.Cells[1, 4]).Style.Font.Bold = true;
                     xlWorkSheet.Column(4).AutoFit();
 

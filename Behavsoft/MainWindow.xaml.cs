@@ -37,7 +37,7 @@ namespace Behavsoft
         {
             get
             {
-                return _caminhoLocal + "ConfiguracaoMenu.xml";
+                return _caminhoLocal + "MenuConfiguration.xml";
             }
         }
 
@@ -225,8 +225,7 @@ namespace Behavsoft
             try
             {
                 Microsoft.Win32.OpenFileDialog openDlg = new Microsoft.Win32.OpenFileDialog();
-                openDlg.InitialDirectory = @"c:\";
-                bool? ret = openDlg.ShowDialog();
+                var ret = openDlg.ShowDialog();
 
                 if (ret.HasValue && ret.Value)
                 {
@@ -601,39 +600,39 @@ namespace Behavsoft
         void ProtocoloPadrao(ref XmlTextWriter xtw)
         {
             xtw.WriteStartElement("protocolo"); // proto ini
-            xtw.WriteAttributeString("nome", "Labirinto Em Cruz Elevado");
-            this.CriaItemXml(ref xtw, "A", "Braço Aberto");
-            this.CriaItemXml(ref xtw, "S", string.Empty);
+            xtw.WriteAttributeString("nome", "Elevated plus maze");
+            this.CriaItemXml(ref xtw, "A", "Open arm");
+            this.CriaItemXml(ref xtw, "S", "Central crossed");
             this.CriaItemXml(ref xtw, "D", "Grooming");
-            this.CriaItemXml(ref xtw, "F", "Braço Fechado");
+            this.CriaItemXml(ref xtw, "F", "Closed arm");
             this.CriaItemXml(ref xtw, "H", string.Empty);
-            this.CriaItemXml(ref xtw, "J", "Esticar");
-            this.CriaItemXml(ref xtw, "K", "Espiar");
+            this.CriaItemXml(ref xtw, "J", "Strech-attend");
+            this.CriaItemXml(ref xtw, "K", "Head dipping");
+            this.CriaItemXml(ref xtw, "L", "Rearing");
+            xtw.WriteEndElement(); // proto fim
+
+            xtw.WriteStartElement("protocolo"); // proto ini
+            xtw.WriteAttributeString("nome", "Open field");
+            this.CriaItemXml(ref xtw, "A", "Walking");
+            this.CriaItemXml(ref xtw, "S", "Rearing");
+            this.CriaItemXml(ref xtw, "D", "Grooming");
+            this.CriaItemXml(ref xtw, "F", "Feaces");
+            this.CriaItemXml(ref xtw, "H", string.Empty);
+            this.CriaItemXml(ref xtw, "J", "Periphery");
+            this.CriaItemXml(ref xtw, "K", "Centre");
             this.CriaItemXml(ref xtw, "L", string.Empty);
             xtw.WriteEndElement(); // proto fim
 
             xtw.WriteStartElement("protocolo"); // proto ini
-            xtw.WriteAttributeString("nome", "Campo Aberto");
-            this.CriaItemXml(ref xtw, "A", "Andar");
-            this.CriaItemXml(ref xtw, "S", "Levantar");
-            this.CriaItemXml(ref xtw, "D", "Grooming");
-            this.CriaItemXml(ref xtw, "F", "Fezes");
-            this.CriaItemXml(ref xtw, "H", string.Empty);
-            this.CriaItemXml(ref xtw, "J", "Periferia");
-            this.CriaItemXml(ref xtw, "K", "Central");
-            this.CriaItemXml(ref xtw, "L", string.Empty);
-            xtw.WriteEndElement(); // proto fim
-
-            xtw.WriteStartElement("protocolo"); // proto ini
-            xtw.WriteAttributeString("nome", "Nado Forçado");
-            this.CriaItemXml(ref xtw, "A", "Escalar");
-            this.CriaItemXml(ref xtw, "S", "Nadar");
+            xtw.WriteAttributeString("nome", "Forced swim test");
+            this.CriaItemXml(ref xtw, "A", "Climbing");
+            this.CriaItemXml(ref xtw, "S", "Swimming");
             this.CriaItemXml(ref xtw, "D", "Headshake");
             this.CriaItemXml(ref xtw, "F", string.Empty);
             this.CriaItemXml(ref xtw, "H", string.Empty);
-            this.CriaItemXml(ref xtw, "J", "Flutuar");
-            this.CriaItemXml(ref xtw, "K", "Congelar");
-            this.CriaItemXml(ref xtw, "L", "Mergulhar");
+            this.CriaItemXml(ref xtw, "J", "Floating");
+            this.CriaItemXml(ref xtw, "K", "Freezing");
+            this.CriaItemXml(ref xtw, "L", "Dive");
             xtw.WriteEndElement(); // proto fim
 
             xtw.WriteStartElement("protocolo"); // proto ini
