@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fernando Marostega")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright Fernando Marostega ©  2013")]
+[assembly: AssemblyCopyright("Copyright Fernando Marostega ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

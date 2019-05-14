@@ -3,3 +3,7 @@
 ################################################################################
 
 /Behavsoft/bin/Debug
+/Behavsoft/obj
+/.vs/Behavsoft/v16
+/.vs
+/Behavsoft/bin/Release

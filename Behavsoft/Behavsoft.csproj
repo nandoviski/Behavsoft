@@ -71,6 +71,7 @@
     <Compile Include="ucProtocoloEditar.xaml.cs">
       <DependentUpon>ucProtocoloEditar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\LaguageProcessor.cs" />
     <Page Include="ucProtocoloNovo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

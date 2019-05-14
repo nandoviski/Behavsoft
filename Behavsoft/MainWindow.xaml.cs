@@ -4,33 +4,28 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml;
 
 namespace Behavsoft
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
     {
-        private TimeSpan? ultimoClique;
-        private Key ultimaTecla;
-        private List<TemposItem> tempos;
-        private VideoState estadoVideo;
-        private DispatcherTimer timer;
-        private bool isDragging;
-        private TimeSpan? inicioAnalise;
-        private int ultimoItemSelecionado = -1;
+        TimeSpan? ultimoClique;
+        Key ultimaTecla;
+        List<TemposItem> tempos;
+        VideoState estadoVideo;
+        DispatcherTimer timer;
+        bool isDragging;
+        TimeSpan? inicioAnalise;
+        int ultimoItemSelecionado = -1;
 
-        private string _caminhoLocal
+        string _caminhoLocal
         {
             get
             {
@@ -38,7 +33,7 @@ namespace Behavsoft
             }
         }
 
-        private string caminhoXml
+        string caminhoXml
         {
             get
             {
@@ -68,7 +63,7 @@ namespace Behavsoft
             timer.Tick += timer_Tick;
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        void timer_Tick(object sender, EventArgs e)
         {
             if (!isDragging)
                 sldBarraTempo.Value = VideoControl.Position.TotalSeconds;
@@ -93,7 +88,7 @@ namespace Behavsoft
             }
         }
 
-        private void cbTipoComportamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void cbTipoComportamento_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbTipoComportamento.SelectedItem != null)
             {
@@ -125,7 +120,7 @@ namespace Behavsoft
             }
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (estadoVideo == VideoState.Played)
             {
@@ -211,7 +206,7 @@ namespace Behavsoft
             }
         }
 
-        private TemposItem BuscarUltimoTempo(Key tecla)
+        TemposItem BuscarUltimoTempo(Key tecla)
         {
             if (tempos != null && tempos.Count > 0)
             {
@@ -225,7 +220,7 @@ namespace Behavsoft
             return null;
         }
 
-        private void BrowseButton_Click_1(object sender, RoutedEventArgs e)
+        void BrowseButton_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -255,7 +250,7 @@ namespace Behavsoft
             }
         }
 
-        private void PlayButton_Click_1(object sender, RoutedEventArgs e)
+        void PlayButton_Click_1(object sender, RoutedEventArgs e)
         {
             if (MediaPathTextBox.Text.Length <= 0)
             {
@@ -294,14 +289,14 @@ namespace Behavsoft
             }
         }
 
-        private void PauseButton_Click_1(object sender, RoutedEventArgs e)
+        void PauseButton_Click_1(object sender, RoutedEventArgs e)
         {
             VideoControl.Pause();
             estadoVideo = VideoState.Paused;
             timer.Stop();
         }
 
-        private void StopButton_Click_1(object sender, RoutedEventArgs e)
+        void StopButton_Click_1(object sender, RoutedEventArgs e)
         {
             ultimoClique = null;
             FinalizarTodasTeclas(VideoControl.Position);
@@ -315,7 +310,7 @@ namespace Behavsoft
             inicioAnalise = null;
         }
 
-        private void MostrarTempos()
+        void MostrarTempos()
         {
             lbAcao.Items.Clear();
 
@@ -335,14 +330,14 @@ namespace Behavsoft
                 lbAcao.ScrollIntoView(lbAcao.Items[lbAcao.Items.Count - 1]);
         }
 
-        private void BloquearComponentesConfig(bool bloquear)
+        void BloquearComponentesConfig(bool bloquear)
         {
             BrowseButton.IsEnabled = !bloquear;
             gbTeclas.IsEnabled = !bloquear;
             cbTipoComportamento.IsEnabled = !bloquear;
         }
 
-        private void btnSalvarComo_Click(object sender, RoutedEventArgs e)
+        void btnSalvarComo_Click(object sender, RoutedEventArgs e)
         {
             if (estadoVideo != VideoState.Stopped)
             {
@@ -372,12 +367,12 @@ namespace Behavsoft
             }
         }
 
-        private void sldBarraTempo_DragStarted_1(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        void sldBarraTempo_DragStarted_1(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             isDragging = true;
         }
 
-        private void sldBarraTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        void sldBarraTempo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (isDragging)
                 VideoControl.Position = TimeSpan.FromSeconds(sldBarraTempo.Value);
@@ -391,14 +386,14 @@ namespace Behavsoft
             }
         }
 
-        private void sldBarraTempo_DragCompleted_1(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        void sldBarraTempo_DragCompleted_1(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             isDragging = false;
             //VideoControl.Position = TimeSpan.FromSeconds(sldBarraTempo.Value);
         }
 
         // Finaliza todas as teclas aberta a o clicar no Stop
-        private void FinalizarTodasTeclas(TimeSpan final)
+        void FinalizarTodasTeclas(TimeSpan final)
         {
             TimeSpan tempo = new TimeSpan(final.Hours, final.Minutes, final.Seconds);
 
@@ -410,7 +405,7 @@ namespace Behavsoft
             }
         }
 
-        private string BuscarTextoAtalho(Key tecla)
+        string BuscarTextoAtalho(Key tecla)
         {
             string retorno = string.Empty;
 
@@ -445,7 +440,7 @@ namespace Behavsoft
             return retorno;
         }
 
-        private void MudarCorTecla(Key tecla, bool isPressionado)
+        void MudarCorTecla(Key tecla, bool isPressionado)
         {
             switch (tecla)
             {
@@ -522,25 +517,25 @@ namespace Behavsoft
             }
         }
 
-        private void miSair_Click(object sender, RoutedEventArgs e)
+        void miSair_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void miJuntarExcel_Click(object sender, RoutedEventArgs e)
+        void miJuntarExcel_Click(object sender, RoutedEventArgs e)
         {
             ucJuntarExcel j = new ucJuntarExcel(caminhoXml);
             j.ShowDialog();
         }
 
-        private void miNovoProtocolo_Click(object sender, RoutedEventArgs e)
+        void miNovoProtocolo_Click(object sender, RoutedEventArgs e)
         {
             ucProtocoloNovo pn = new ucProtocoloNovo(caminhoXml);
             pn.ShowDialog();
             this.IniciarProtocolos();
         }
 
-        private void miEditarProtocolo_Click(object sender, RoutedEventArgs e)
+        void miEditarProtocolo_Click(object sender, RoutedEventArgs e)
         {
             if (cbTipoComportamento != null && cbTipoComportamento.Items.Count > 0)
             {
@@ -550,7 +545,7 @@ namespace Behavsoft
             }
         }
 
-        private void IniciarProtocolos()
+        void IniciarProtocolos()
         {
             if (!File.Exists(caminhoXml))
             {
@@ -603,7 +598,7 @@ namespace Behavsoft
             }
         }
 
-        private void ProtocoloPadrao(ref XmlTextWriter xtw)
+        void ProtocoloPadrao(ref XmlTextWriter xtw)
         {
             xtw.WriteStartElement("protocolo"); // proto ini
             xtw.WriteAttributeString("nome", "Labirinto Em Cruz Elevado");
@@ -666,7 +661,7 @@ namespace Behavsoft
             xtw.WriteEndElement(); // proto fim
         }
 
-        private void CriaItemXml(ref XmlTextWriter xtw, string tecla, string nome)
+        void CriaItemXml(ref XmlTextWriter xtw, string tecla, string nome)
         {
             xtw.WriteStartElement("item");
             xtw.WriteAttributeString("tecla", tecla);
@@ -674,7 +669,7 @@ namespace Behavsoft
             xtw.WriteEndElement();
         }
 
-        private void LimparComboBoxProtocolo()
+        void LimparComboBoxProtocolo()
         {
             // Limpar itens ComboBox
             if (cbTipoComportamento != null && cbTipoComportamento.Items.Count > 0)
