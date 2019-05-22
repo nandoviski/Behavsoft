@@ -94,12 +94,12 @@ namespace Behavsoft
 		{
 			if (cbTipoComportamento.SelectedItem != null)
 			{
-				ComboProtocoloItem teste = (ComboProtocoloItem)cbTipoComportamento.SelectedItem;
+				var comboItem = (ComboProtocoloItem)cbTipoComportamento.SelectedItem;
 				ultimoItemSelecionado = cbTipoComportamento.SelectedIndex;
 
-				if (teste.Nodos != null && teste.Nodos.Count > 0)
+				if (comboItem.Nodos != null && comboItem.Nodos.Count > 0)
 				{
-					foreach (XmlNode item in teste.Nodos)
+					foreach (XmlNode item in comboItem.Nodos)
 					{
 						if (item.Attributes["tecla"].Value == "A")
 							txtTeclaA.Text = item.InnerText;
@@ -235,7 +235,7 @@ namespace Behavsoft
 		{
 			try
 			{
-				Microsoft.Win32.OpenFileDialog openDlg = new Microsoft.Win32.OpenFileDialog();
+				var openDlg = new Microsoft.Win32.OpenFileDialog();
 				var ret = openDlg.ShowDialog();
 
 				if (ret.HasValue && ret.Value)
@@ -256,7 +256,7 @@ namespace Behavsoft
 			}
 			catch
 			{
-				MessageBox.Show("Erro ao carregar o vídeo", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("Error loading the video", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -264,7 +264,7 @@ namespace Behavsoft
 		{
 			if (MediaPathTextBox.Text.Length <= 0)
 			{
-				MessageBox.Show("Você deve selecionar um video", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Please select a video", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
@@ -327,7 +327,7 @@ namespace Behavsoft
 
 			foreach (var item in tempos)
 			{
-				string msg = item.Tecla + " " + item.Inicio.Value;//.ToString(@"hh\:mm\:ss");
+				var msg = item.Tecla + " " + item.Inicio.Value;//.ToString(@"hh\:mm\:ss");
 
 				if (item.Fim.HasValue)
 				{
@@ -352,24 +352,24 @@ namespace Behavsoft
 		{
 			if (estadoVideo != VideoState.Stopped)
 			{
-				MessageBox.Show("Não é possivel salvar enquanto o video estiver rodando", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Please stop the video before save", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
 			if (tempos == null || tempos.Count < 1)
 			{
-				MessageBox.Show("Não existe dados a serem salvos", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("There is no data to be saved", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
-			Microsoft.Win32.SaveFileDialog sabeDlg = new Microsoft.Win32.SaveFileDialog();
+			var sabeDlg = new Microsoft.Win32.SaveFileDialog();
 			sabeDlg.InitialDirectory = @"c:\";
-			sabeDlg.Filter = "Pasta de Trabalho do Excel 97-2003|*.xls|Pasta de Trabalho do Excel|*.xlsx";
-			bool? ret = sabeDlg.ShowDialog();
+			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+			var ret = sabeDlg.ShowDialog();
 
 			if (ret.HasValue && ret.Value)
 			{
-				ExcelUtil util = new ExcelUtil();
+				var util = new ExcelUtil();
 				util.JanelaPai = this;
 				util.GerarExcel(sabeDlg.FileName, tempos);
 

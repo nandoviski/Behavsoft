@@ -73,7 +73,7 @@ namespace Behavsoft
 		//    }
 		//}
 
-		private BackgroundWorker bwGerarExcel;
+		BackgroundWorker bwGerarExcel;
 		public MainWindow JanelaPai = null;
 
 		public void GerarExcel(string caminhoCompleto, List<TemposItem> tempos)
@@ -247,7 +247,7 @@ namespace Behavsoft
 
 		}
 
-		private void bwGerarExcel_DoWork(object sender, DoWorkEventArgs e)
+		void bwGerarExcel_DoWork(object sender, DoWorkEventArgs e)
 		{
 			object[] param = e.Argument as object[];
 
@@ -416,7 +416,7 @@ namespace Behavsoft
 				JanelaPai.MostrarUcCarregando(false);
 		}
 
-		private void liberarObjetos(object obj)
+		void liberarObjetos(object obj)
 		{
 			try
 			{
@@ -502,7 +502,7 @@ namespace Behavsoft
 			GerarJuntaTabelas(listaDic, nomeTecla, savePath);
 		}
 
-		private void GerarJuntaTabelas(Dictionary<string, List<KeyData>> dic, Dictionary<string, string> nomeTecla, string caminhoCompleto)
+		void GerarJuntaTabelas(Dictionary<string, List<KeyData>> dic, Dictionary<string, string> nomeTecla, string caminhoCompleto)
 		{
 			try
 			{
@@ -604,7 +604,7 @@ namespace Behavsoft
 
 		}
 
-		private int BuscarDadosStruct(List<KeyData> lista, string tecla)
+		int BuscarDadosStruct(List<KeyData> lista, string tecla)
 		{
 			int index = -1;
 
@@ -617,7 +617,7 @@ namespace Behavsoft
 			return index;
 		}
 
-		private struct KeyData
+		struct KeyData
 		{
 			public object tecla;
 			public object frequecia;
