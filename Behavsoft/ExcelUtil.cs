@@ -401,11 +401,11 @@ namespace Behavsoft
 				liberarObjetos(xlApp);
 
 				//exibe mensagem ao usuario
-				MessageBox.Show("Arquivo " + caminhoCompleto + " gerado com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Merge completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception excpt)
 			{
-				MessageBox.Show(excpt.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(excpt.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 
 		}
@@ -594,11 +594,11 @@ namespace Behavsoft
 				liberarObjetos(xlApp);
 
 				//exibe mensagem ao usuario
-				MessageBox.Show("Arquivo " + caminhoCompleto + " gerado com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Merge completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception excpt)
 			{
-				MessageBox.Show(excpt.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(excpt.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 
 

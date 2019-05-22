@@ -406,7 +406,7 @@ namespace Behavsoft
 		// Finaliza todas as teclas aberta a o clicar no Stop
 		void FinalizarTodasTeclas(TimeSpan final)
 		{
-			TimeSpan tempo = new TimeSpan(final.Hours, final.Minutes, final.Seconds);
+			var tempo = new TimeSpan(final.Hours, final.Minutes, final.Seconds);
 
 			foreach (TemposItem item in tempos)
 			{
@@ -550,8 +550,8 @@ namespace Behavsoft
 		{
 			if (cbTipoComportamento != null && cbTipoComportamento.Items.Count > 0)
 			{
-				ucProtocoloEditar pe = new ucProtocoloEditar(caminhoXml);
-				bool? result = pe.ShowDialog();
+				var pe = new ucProtocoloEditar(caminhoXml);
+				pe.ShowDialog();
 				this.IniciarProtocolos();
 			}
 		}
@@ -647,29 +647,29 @@ namespace Behavsoft
 			this.CriaItemXml(ref xtw, "L", "Dive");
 			xtw.WriteEndElement(); // proto fim
 
-			xtw.WriteStartElement("protocolo"); // proto ini
-			xtw.WriteAttributeString("nome", "Reconhecimento de Objeto");
-			this.CriaItemXml(ref xtw, "A", "Inicio");
-			this.CriaItemXml(ref xtw, "S", "Obejto 1");
-			this.CriaItemXml(ref xtw, "D", "Obejto 2");
-			this.CriaItemXml(ref xtw, "F", "Obejto Novo");
-			this.CriaItemXml(ref xtw, "H", string.Empty);
-			this.CriaItemXml(ref xtw, "J", string.Empty);
-			this.CriaItemXml(ref xtw, "K", string.Empty);
-			this.CriaItemXml(ref xtw, "L", string.Empty);
-			xtw.WriteEndElement(); // proto fim
+			//xtw.WriteStartElement("protocolo"); // proto ini
+			//xtw.WriteAttributeString("nome", "Reconhecimento de Objeto");
+			//this.CriaItemXml(ref xtw, "A", "Inicio");
+			//this.CriaItemXml(ref xtw, "S", "Obejto 1");
+			//this.CriaItemXml(ref xtw, "D", "Obejto 2");
+			//this.CriaItemXml(ref xtw, "F", "Obejto Novo");
+			//this.CriaItemXml(ref xtw, "H", string.Empty);
+			//this.CriaItemXml(ref xtw, "J", string.Empty);
+			//this.CriaItemXml(ref xtw, "K", string.Empty);
+			//this.CriaItemXml(ref xtw, "L", string.Empty);
+			//xtw.WriteEndElement(); // proto fim
 
-			xtw.WriteStartElement("protocolo"); // proto ini
-			xtw.WriteAttributeString("nome", "Grooming Microestruturado");
-			this.CriaItemXml(ref xtw, "A", "Sem Grooming");
-			this.CriaItemXml(ref xtw, "S", "Lamber Patas");
-			this.CriaItemXml(ref xtw, "D", "Lavar Focinho");
-			this.CriaItemXml(ref xtw, "F", string.Empty);
-			this.CriaItemXml(ref xtw, "H", string.Empty);
-			this.CriaItemXml(ref xtw, "J", "Lavar Cabeça/Orelhas");
-			this.CriaItemXml(ref xtw, "K", "Coçar Corpo");
-			this.CriaItemXml(ref xtw, "L", "Lavar Patas Traseiras/Genitália");
-			xtw.WriteEndElement(); // proto fim
+			//xtw.WriteStartElement("protocolo"); // proto ini
+			//xtw.WriteAttributeString("nome", "Grooming Microestruturado");
+			//this.CriaItemXml(ref xtw, "A", "Sem Grooming");
+			//this.CriaItemXml(ref xtw, "S", "Lamber Patas");
+			//this.CriaItemXml(ref xtw, "D", "Lavar Focinho");
+			//this.CriaItemXml(ref xtw, "F", string.Empty);
+			//this.CriaItemXml(ref xtw, "H", string.Empty);
+			//this.CriaItemXml(ref xtw, "J", "Lavar Cabeça/Orelhas");
+			//this.CriaItemXml(ref xtw, "K", "Coçar Corpo");
+			//this.CriaItemXml(ref xtw, "L", "Lavar Patas Traseiras/Genitália");
+			//xtw.WriteEndElement(); // proto fim
 		}
 
 		void CriaItemXml(ref XmlTextWriter xtw, string tecla, string nome)

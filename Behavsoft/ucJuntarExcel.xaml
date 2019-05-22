@@ -16,7 +16,7 @@
 
         <ListBox Name="lbAcao" Margin="5,60,5,0" HorizontalAlignment="Stretch" Height="272" VerticalAlignment="Top"/>
 
-        <Button Content="Generate" x:Name="btnGerarExcel" HorizontalAlignment="Left" Margin="5,335,0,0" VerticalAlignment="Top" Width="75" Click="btnGerarExcel_Click"/>
+        <Button Content="Merge" x:Name="btnGerarExcel" HorizontalAlignment="Left" Margin="5,335,0,0" VerticalAlignment="Top" Width="75" Click="btnGerarExcel_Click"/>
 
         <ComboBox x:Name="cbTipoComportamento" Margin="5,8,5,0" DisplayMemberPath="Nome" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" SelectionChanged="cbTipoComportamento_SelectionChanged"/>
         

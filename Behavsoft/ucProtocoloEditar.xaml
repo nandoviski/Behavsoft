@@ -1,15 +1,15 @@
 ﻿<Window x:Class="Behavsoft.ucProtocoloEditar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Editar Protocolo" Height="360" Width="400" ResizeMode="NoResize"
+        Title="Edit Behavioural Test" Height="360" Width="400" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox x:Name="cbTipoComportamento" Margin="5,10,5,0" VerticalAlignment="Top"
                       HorizontalAlignment="Stretch" DisplayMemberPath="Nome" SelectionChanged="cbTipoComportamento_SelectionChanged" />
         
-        <Button Name="btnEditar" Width="80" Height="25" Content="Editar" Margin="5,37,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnEditar_Click" />
+        <Button Name="btnEditar" Width="80" Height="25" Content="Edit" Margin="5,37,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnEditar_Click" />
         
-        <GroupBox x:Name="gbTeclas" Header="Teclas" Margin="5,67,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch" IsEnabled="False">
+        <GroupBox x:Name="gbTeclas" Header="Keys" Margin="5,67,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch" IsEnabled="False">
             <Grid>
                 <TextBlock x:Name="tbTeclaA" Margin="5,10,0,0" HorizontalAlignment="Left" Height="18" Text="A" VerticalAlignment="Top" Width="10" Style="{StaticResource TeclaAtalhoNormal}" />
                 <TextBox x:Name="txtTeclaA" Height="23" Margin="20,7,5,0" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Top" />
@@ -37,7 +37,7 @@
             </Grid>
         </GroupBox>
 
-        <Button Name="btnSalvar" Width="80" Height="25" Content="Salvar" Margin="5,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Click="btnSalvar_Click" />
-        <Button Name="btnCancelar" Width="80" Height="25" Content="Cancelar" Margin="95,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Click="btnCancelar_Click" />
+        <Button Name="btnSalvar" Width="80" Height="25" Content="Save" Margin="5,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Click="btnSalvar_Click" />
+        <Button Name="btnCancelar" Width="80" Height="25" Content="Cancel" Margin="95,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False" Click="btnCancelar_Click" />
     </Grid>
 </Window>
