@@ -47,7 +47,5 @@
                 <TextBox Name="txtTeclaL" Height="23" Margin="20,182,5,0" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Top" IsReadOnly="True" />
             </Grid>
         </GroupBox>
-        
-        <ComboBox x:Name="cbTipoExcel" Margin="5,270,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1"/>
     </Grid>
 </Window>
