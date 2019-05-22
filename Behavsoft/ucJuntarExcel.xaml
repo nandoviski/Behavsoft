@@ -1,26 +1,26 @@
 ﻿<Window x:Class="Behavsoft.ucJuntarExcel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Juntar Arquivos Excel" Height="400" Width="800">
+        Title="Merge Excel Files" Height="400" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="190"/>
         </Grid.ColumnDefinitions>
         
-        <TextBlock HorizontalAlignment="Left" Margin="5,11,0,0" Text="Salvar em:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,11,0,0" Text="Save Path:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSalvarEm" HorizontalAlignment="Stretch" Height="23" Margin="65,8,40,0" VerticalAlignment="Top" />
         <Button Content="..." x:Name="btnSalvarEm" HorizontalAlignment="Right" Margin="0,8,5,0" VerticalAlignment="Top" Width="30" Click="btnSalvarEm_Click"/>
 
-        <Button Content="Buscar Excel" Name="btnBuscarExcels" HorizontalAlignment="Left" Margin="5,35,0,0" VerticalAlignment="Top" Width="127" Click="btnBuscarExcels_Click"/>
+        <Button Content="Find Excel Files" Name="btnBuscarExcels" HorizontalAlignment="Left" Margin="5,35,0,0" VerticalAlignment="Top" Width="127" Click="btnBuscarExcels_Click"/>
 
         <ListBox Name="lbAcao" Margin="5,60,5,0" HorizontalAlignment="Stretch" Height="272" VerticalAlignment="Top"/>
 
-        <Button Content="Gerar" x:Name="btnGerarExcel" HorizontalAlignment="Left" Margin="5,335,0,0" VerticalAlignment="Top" Width="75" Click="btnGerarExcel_Click"/>
+        <Button Content="Generate" x:Name="btnGerarExcel" HorizontalAlignment="Left" Margin="5,335,0,0" VerticalAlignment="Top" Width="75" Click="btnGerarExcel_Click"/>
 
         <ComboBox x:Name="cbTipoComportamento" Margin="5,8,5,0" DisplayMemberPath="Nome" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" SelectionChanged="cbTipoComportamento_SelectionChanged"/>
         
-        <GroupBox Name="gbTeclas" Header="Teclas" Margin="5,37,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch" Grid.Column="1">
+        <GroupBox Name="gbTeclas" Header="Keys" Margin="5,37,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch" Grid.Column="1">
             <Grid>
                 <TextBlock Margin="5,10,0,0" HorizontalAlignment="Left" Height="18" Text="A" VerticalAlignment="Top" Width="10"/>
                 <TextBox Name="txtTeclaA" Height="23" Margin="20,7,5,0" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Top" IsReadOnly="True" />

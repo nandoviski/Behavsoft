@@ -17,25 +17,25 @@
         <!-- Menu -->
         <Menu IsMainMenu="True" Grid.ColumnSpan="2">
             <MenuItem Header="{x:Static lang:Resources.MainWindow_Menu_File}">
-                <MenuItem Header="Sair" Name="miSair" Click="miSair_Click" />
+                <MenuItem Header="Exit" Name="miSair" Click="miSair_Click" />
             </MenuItem>
-            <MenuItem Header="Protocolo">
-                <MenuItem Header="Novo protocolo" Name="miNovoProtocolo" Click="miNovoProtocolo_Click" />
-                <MenuItem Header="Editar protocolo" Name="miEditarProtocolo" Click="miEditarProtocolo_Click" />
+            <MenuItem Header="Behavioural Test">
+                <MenuItem Header="New Behavioural Test" Name="miNovoProtocolo" Click="miNovoProtocolo_Click" />
+                <MenuItem Header="Edit Behavioural Test" Name="miEditarProtocolo" Click="miEditarProtocolo_Click" />
             </MenuItem>
             <MenuItem Header="Excel">
-                <MenuItem Header="Juntar Excel" Name="miJuntarExcel" Click="miJuntarExcel_Click" />
+                <MenuItem Header="Merge Excel Files" Name="miJuntarExcel" Click="miJuntarExcel_Click" />
             </MenuItem>
         </Menu>
         
         <!-- UC com mensagem de aguarde -->
         <UserControl Grid.Row="1" Grid.Column="0" Name="ucAguardeExcel" VerticalAlignment="Center"
                      Background="LightGray" Visibility="Collapsed" HorizontalAlignment="Center">
-            <TextBlock Text="Aguarde! O excel está sendo gerado!" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="Please wait, the excel file is being generated!" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </UserControl>
 
         <Button Grid.Row="1" Grid.Column="0" Height="25" Width="94" HorizontalAlignment="Left" Margin="5,0,14,0"
-                Name="BrowseButton" VerticalAlignment="Center" Click="BrowseButton_Click_1" Content="Procurar Video" />
+                Name="BrowseButton" VerticalAlignment="Center" Click="BrowseButton_Click_1" Content="Choose Video" />
 
         <TextBox Grid.Row="1" Grid.Column="0" Height="25" Margin="105,0,0,0" HorizontalAlignment="Stretch"
                  IsReadOnly="True" Name="MediaPathTextBox" VerticalAlignment="Center" />
@@ -45,7 +45,7 @@
             <MediaElement Name="VideoControl" 
                           LoadedBehavior="Manual"
                           UnloadedBehavior="Stop" 
-                          Source=""                       
+                          Source=""
                           VerticalAlignment="Stretch" 
                           HorizontalAlignment="Stretch" Margin="0,0,0,45" />
 
@@ -62,7 +62,7 @@
             <ComboBox x:Name="cbTipoComportamento" Margin="5,10,5,0" VerticalAlignment="Top"
                       HorizontalAlignment="Stretch" />
 
-            <GroupBox Name="gbTeclas" Header="Teclas" Margin="5,37,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch">
+            <GroupBox Name="gbTeclas" Header="Keys" Margin="5,37,5,0" VerticalAlignment="Top" Height="228" HorizontalAlignment="Stretch">
                 <Grid>
                     <TextBlock Name="tbTeclaA" Margin="5,10,0,0" HorizontalAlignment="Left" Height="18" Text="A" VerticalAlignment="Top" Width="10" Style="{StaticResource TeclaAtalhoNormal}" />
                     <TextBox Name="txtTeclaA" Height="23" Margin="20,7,5,0" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Top" IsReadOnly="True" />
@@ -102,7 +102,7 @@
                     Click="StopButton_Click_1" Content="Stop (Esc)" Height="23" VerticalAlignment="Top" />
 
             <Button Margin="0,343,0,0" x:Name="btnSalvarComo" HorizontalAlignment="Center" Width="133"
-                    Content="Salvar Como (Ctrl+S)" Height="23" VerticalAlignment="Top" Click="btnSalvarComo_Click" />
+                    Content="Save as (Ctrl+S)" Height="23" VerticalAlignment="Top" Click="btnSalvarComo_Click" />
 
             <TextBlock x:Name="txtTempoAnalise" Margin="0,375,0,0" TextWrapping="Wrap" Text="00:00:00"
                        VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="84" FontSize="20"/>
