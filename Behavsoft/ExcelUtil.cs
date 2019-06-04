@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Windows;
-using System.Data;
-using Excel = Microsoft.Office.Interop.Excel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Behavsoft
 {
@@ -401,7 +397,11 @@ namespace Behavsoft
 				liberarObjetos(xlApp);
 
 				//exibe mensagem ao usuario
-				MessageBox.Show("Merge completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				var result = MessageBox.Show("Excel generated successfully.\nDo you wish to open the file now?", "Success", MessageBoxButton.YesNo, MessageBoxImage.Information);
+				if (result == MessageBoxResult.Yes)
+				{
+					Process.Start(caminhoCompleto);
+				}
 			}
 			catch (Exception excpt)
 			{
