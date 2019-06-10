@@ -28,21 +28,7 @@ namespace Behavsoft
 		TimeSpan? inicioAnalise;
 		int ultimoItemSelecionado = -1;
 
-		string _caminhoLocal
-		{
-			get
-			{
-				return AppDomain.CurrentDomain.BaseDirectory;
-			}
-		}
-
-		string caminhoXml
-		{
-			get
-			{
-				return _caminhoLocal + "MenuConfiguration.xml";
-			}
-		}
+		string caminhoXml => AppDomain.CurrentDomain.BaseDirectory + "MenuConfiguration.xml";
 
 		const int StopTimeDefaultTime = 5;
 		int StopTime => stopTime ?? StopTimeDefaultTime;
@@ -393,7 +379,7 @@ namespace Behavsoft
 
 			var sabeDlg = new Microsoft.Win32.SaveFileDialog();
 			sabeDlg.InitialDirectory = @"c:\";
-			sabeDlg.Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls";
+			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
 			var ret = sabeDlg.ShowDialog();
 
 			if (ret.HasValue && ret.Value)

@@ -143,14 +143,14 @@ namespace Behavsoft
 			nomeTecla.Add("K", txtTeclaK.Text);
 			nomeTecla.Add("L", txtTeclaL.Text);
 
-			new ExcelUtil().MesclarExcel(listaExcel, nomeTecla, txtSalvarEm.Text);
+			new ExcelUtil().MergeExcel(listaExcel, nomeTecla, txtSalvarEm.Text);
 		}
 
 		void btnSalvarEm_Click(object sender, RoutedEventArgs e)
 		{
 			var sabeDlg = new SaveFileDialog();
 			sabeDlg.FileName = txtSalvarEm.Text;
-			sabeDlg.Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls";
+			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
 
 			var ret = sabeDlg.ShowDialog();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -442,7 +443,7 @@ namespace Behavsoft
 			public int Frequencia;
 		}
 
-		public void MesclarExcel(string[] excelPath, Dictionary<string, string> nomeTecla, string savePath)
+		public void MergeExcel(string[] excelPath, Dictionary<string, string> nomeTecla, string savePath)
 		{
 			var listaDic = new Dictionary<string, List<KeyData>>();
 
@@ -568,17 +569,30 @@ namespace Behavsoft
 					xlWorkSheet.Cells[linhaCont, 1] = key;
 
 					int coluna;
-					foreach (KeyData item in dic[key])
+					var teclasUsadasCount = teclasUsadas.Count;
+					object frequecia, duracao;
+					var dictionaryKeys = dic[key];
+
+					foreach (var item in teclasUsadas)
 					{
-						coluna = teclasUsadas.IndexOf(item.tecla.ToString()) + 2;
-						xlWorkSheet.Cells[linhaCont, coluna] = item.frequecia;
+						if (dictionaryKeys.Any(k => k.tecla.ToString() == item))
+						{
+							var usedKey = dictionaryKeys.First(k => k.tecla.ToString() == item);
+							frequecia = usedKey.frequecia;
+							duracao = usedKey.duracao;
+						}
+						else
+						{
+							frequecia = 0;
+							duracao = 0;
+						}
+
+						coluna = teclasUsadas.IndexOf(item) + 2;
+						xlWorkSheet.Cells[linhaCont, coluna] = frequecia;
 						((Excel.Range)xlWorkSheet.Cells[linhaCont, coluna]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-					}
-					foreach (KeyData item in dic[key])
-					{
-						coluna = teclasUsadas.IndexOf(item.tecla.ToString()) + 2 + teclasUsadas.Count;
-						xlWorkSheet.Cells[linhaCont, coluna] = item.duracao;
-						((Excel.Range)xlWorkSheet.Cells[linhaCont, coluna]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+						xlWorkSheet.Cells[linhaCont, (coluna + teclasUsadasCount)] = duracao;
+						((Excel.Range)xlWorkSheet.Cells[linhaCont, (coluna + teclasUsadasCount)]).HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 					}
 
 					linhaCont++;
@@ -593,8 +607,11 @@ namespace Behavsoft
 				liberarObjetos(xlWorkBook);
 				liberarObjetos(xlApp);
 
-				//exibe mensagem ao usuario
-				MessageBox.Show("Merge completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				var result = MessageBox.Show("Merge completed successfully.\nDo you wish to open the file now?", "Success", MessageBoxButton.YesNo, MessageBoxImage.Information);
+				if (result == MessageBoxResult.Yes)
+				{
+					Process.Start(caminhoCompleto);
+				}
 			}
 			catch (Exception excpt)
 			{
