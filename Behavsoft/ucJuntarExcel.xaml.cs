@@ -150,7 +150,7 @@ namespace Behavsoft
 		{
 			var sabeDlg = new SaveFileDialog();
 			sabeDlg.FileName = txtSalvarEm.Text;
-			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+			sabeDlg.Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls";
 
 			var ret = sabeDlg.ShowDialog();
 

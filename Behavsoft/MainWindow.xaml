@@ -27,7 +27,7 @@
                 <MenuItem Header="Merge Excel Files" Name="miJuntarExcel" Click="miJuntarExcel_Click" />
             </MenuItem>
         </Menu>
-        
+
         <!-- UC com mensagem de aguarde -->
         <UserControl Grid.Row="1" Grid.Column="0" Name="ucAguardeExcel" VerticalAlignment="Center"
                      Background="LightGray" Visibility="Collapsed" HorizontalAlignment="Center">
@@ -90,24 +90,31 @@
                 </Grid>
             </GroupBox>
 
-            <Button Height="23" HorizontalAlignment="Right" Margin="0,280,111,0"
+            <Button Height="23" HorizontalAlignment="Right" Margin="0,280,115,0"
                     Name="PlayButton" VerticalAlignment="Top" Width="75"
-                    Click="PlayButton_Click_1" Content="Play (P)" />
+                    Click="PlayButton_Click" Content="Play (P)" />
 
-            <Button Height="23" HorizontalAlignment="Right" Margin="0,280,14,0"
-                    Name="PauseButton" VerticalAlignment="Top" Width="75"
+            <Button Height="23" HorizontalAlignment="Right" Margin="0,280,10,0"
+                    Name="PauseButton" VerticalAlignment="Top" Width="96"
                     Click="PauseButton_Click_1" Content="Pause (P)" />
 
-            <Button Margin="0,311,57,0" Name="StopButton" HorizontalAlignment="Right" Width="84"
+            <Button Margin="0,308,115,0" Name="StopButton" HorizontalAlignment="Right" Width="75"
                     Click="StopButton_Click_1" Content="Stop (Esc)" Height="23" VerticalAlignment="Top" />
 
-            <Button Margin="0,343,0,0" x:Name="btnSalvarComo" HorizontalAlignment="Center" Width="133"
+            <Button Margin="94,308,10,0" x:Name="btnSalvarComo" HorizontalAlignment="Center" Width="96"
                     Content="Save as (Ctrl+S)" Height="23" VerticalAlignment="Top" Click="btnSalvarComo_Click" />
 
-            <TextBlock x:Name="txtTempoAnalise" Margin="0,375,0,0" TextWrapping="Wrap" Text="00:00:00"
-                       VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="84" FontSize="20"/>
+            <CheckBox x:Name="chkAutoStop" Content="Auto stop (min):" HorizontalAlignment="Left" Margin="10,348,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtAutoStop" HorizontalAlignment="Left" Height="23" Margin="120,346,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="40" MaxLength="3" PreviewTextInput="TxtAutoStop_PreviewTextInput"/>
 
-            <ListBox Name="lbAcao" HorizontalAlignment="Stretch" Margin="5,405,5,5"/>
+            <TextBlock x:Name="txtTempoAnalise" Margin="37.5,378,107.5,0" TextWrapping="Wrap" Text="00:00"
+                       VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="55" FontSize="20"/>
+            <TextBlock x:Name="txtTempoAnaliseDash" Margin="92,378,98,0" TextWrapping="Wrap" Text="/"
+                       VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="10" FontSize="20"/>
+            <TextBlock x:Name="txtTempoAnaliseTotal" Margin="102.5,378,42.5,0" TextWrapping="Wrap" Text="00:00"
+                       VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="55" FontSize="20"/>
+
+            <ListBox Name="lbAcao" HorizontalAlignment="Stretch" Margin="5,410,5,5"/>
         </Grid>
     </Grid>
 </Window>

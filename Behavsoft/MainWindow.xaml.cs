@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,7 @@ namespace Behavsoft
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		readonly Regex regexNumbersOnly = new Regex("[^0-9]+");
 		TimeSpan? ultimoClique;
 		Key ultimaTecla;
 		List<TemposItem> tempos;
@@ -41,6 +43,10 @@ namespace Behavsoft
 				return _caminhoLocal + "MenuConfiguration.xml";
 			}
 		}
+
+		const int StopTimeDefaultTime = 5;
+		int StopTime => stopTime ?? StopTimeDefaultTime;
+		int? stopTime = null;
 
 		public MainWindow()
 		{
@@ -75,9 +81,18 @@ namespace Behavsoft
 				TimeSpan tempoAnalise = VideoControl.Position - inicioAnalise.Value;
 				if (tempoAnalise.TotalSeconds > 1)
 				{
-					txtTempoAnalise.Text = tempoAnalise.Hours.ToString("00") + ":" + tempoAnalise.Minutes.ToString("00") + ":" + tempoAnalise.Seconds.ToString("00");
+					txtTempoAnalise.Text = tempoAnalise.Minutes.ToString("00") + ":" + tempoAnalise.Seconds.ToString("00");
+					txtTempoAnaliseTotal.Text = StopTime.ToString("00") + ":00";
 
-					if (tempoAnalise.Minutes >= 5 || (tempoAnalise.Minutes >= 4 && tempoAnalise.Seconds >= 45))
+					if (chkAutoStop.IsChecked.HasValue && chkAutoStop.IsChecked.Value && tempoAnalise.Minutes >= StopTime)
+					{
+						StopButton_Click_1(null, null);
+					}
+					else if (tempoAnalise.Minutes >= StopTime)
+					{
+						TempoAnaliseChangeColor(new SolidColorBrush(Colors.Red), FontWeights.Bold);
+					}
+					else if (tempoAnalise.Minutes >= (StopTime - 1) && tempoAnalise.Seconds >= 45)
 					{
 						if (txtTempoAnalise.Foreground is SolidColorBrush &&
 							(txtTempoAnalise.Foreground as SolidColorBrush).Color == Colors.Black)
@@ -139,9 +154,10 @@ namespace Behavsoft
 
 					if (!inicioAnalise.HasValue)
 					{
-						txtTempoAnalise.Foreground = new SolidColorBrush(Colors.Black);
-						txtTempoAnalise.FontWeight = FontWeights.Normal;
-						txtTempoAnalise.Text = "00:00:00";
+						TempoAnaliseChangeColor(new SolidColorBrush(Colors.Black), FontWeights.Normal);
+
+						txtTempoAnalise.Text = "00:00";
+						txtTempoAnaliseTotal.Text = StopTime.ToString("00") + ":00";
 						inicioAnalise = VideoControl.Position;
 					}
 
@@ -180,7 +196,7 @@ namespace Behavsoft
 
 				if (estadoVideo == VideoState.Paused || estadoVideo == VideoState.Stopped)
 				{
-					PlayButton_Click_1(null, null);
+					PlayButton_Click(null, null);
 				}
 				else if (estadoVideo == VideoState.Played)
 				{
@@ -260,7 +276,7 @@ namespace Behavsoft
 			}
 		}
 
-		void PlayButton_Click_1(object sender, RoutedEventArgs e)
+		void PlayButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (MediaPathTextBox.Text.Length <= 0)
 			{
@@ -268,11 +284,22 @@ namespace Behavsoft
 				return;
 			}
 
+			if (chkAutoStop.IsChecked.HasValue && chkAutoStop.IsChecked.Value && int.TryParse(txtAutoStop.Text, out int autoStop))
+			{
+				stopTime = autoStop;
+			}
+			else
+			{
+				stopTime = null;
+			}
+
 			if (estadoVideo == VideoState.Stopped)
 			{
-				txtTempoAnalise.Foreground = new SolidColorBrush(Colors.Black);
-				txtTempoAnalise.FontWeight = FontWeights.Normal;
-				txtTempoAnalise.Text = "00:00:00";
+				TempoAnaliseChangeColor(new SolidColorBrush(Colors.Black), FontWeights.Normal);
+
+				txtTempoAnalise.Text = "00:00";
+				txtTempoAnaliseTotal.Text = StopTime.ToString("00") + ":00";
+
 				tempos = new List<TemposItem>();
 				latencia = new Dictionary<Key, TimeSpan>();
 				MostrarTempos();
@@ -345,6 +372,8 @@ namespace Behavsoft
 		{
 			BrowseButton.IsEnabled = !bloquear;
 			gbTeclas.IsEnabled = !bloquear;
+			chkAutoStop.IsEnabled = !bloquear;
+			txtAutoStop.IsEnabled = !bloquear;
 			cbTipoComportamento.IsEnabled = !bloquear;
 		}
 
@@ -364,7 +393,7 @@ namespace Behavsoft
 
 			var sabeDlg = new Microsoft.Win32.SaveFileDialog();
 			sabeDlg.InitialDirectory = @"c:\";
-			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+			sabeDlg.Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls";
 			var ret = sabeDlg.ShowDialog();
 
 			if (ret.HasValue && ret.Value)
@@ -700,7 +729,22 @@ namespace Behavsoft
 			Paused
 		}
 
+		void TxtAutoStop_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = regexNumbersOnly.IsMatch(e.Text);
+		}
 
+		void TempoAnaliseChangeColor(Brush foreground, FontWeight fontWeight)
+		{
+			txtTempoAnalise.Foreground = foreground;
+			txtTempoAnalise.FontWeight = fontWeight;
+
+			txtTempoAnaliseDash.Foreground = foreground;
+			txtTempoAnaliseDash.FontWeight = fontWeight;
+
+			txtTempoAnaliseTotal.Foreground = foreground;
+			txtTempoAnaliseTotal.FontWeight = fontWeight;
+		}
 	}
 
 	public struct ComboProtocoloItem
