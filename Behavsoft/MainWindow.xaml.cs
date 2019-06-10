@@ -238,6 +238,7 @@ namespace Behavsoft
 			try
 			{
 				var openDlg = new Microsoft.Win32.OpenFileDialog();
+				openDlg.Filter = Util.FileDialogAllFilesFilter;
 				var ret = openDlg.ShowDialog();
 
 				if (ret.HasValue && ret.Value)
@@ -378,8 +379,7 @@ namespace Behavsoft
 			}
 
 			var sabeDlg = new Microsoft.Win32.SaveFileDialog();
-			sabeDlg.InitialDirectory = @"c:\";
-			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+			sabeDlg.Filter = Util.FileDialogExcelFilesFilter;
 			var ret = sabeDlg.ShowDialog();
 
 			if (ret.HasValue && ret.Value)

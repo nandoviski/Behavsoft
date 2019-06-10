@@ -172,7 +172,17 @@ namespace Behavsoft
 					linhaCont++;
 				}
 
-				xlWorkBook.SaveAs(caminhoCompleto, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
+				object fileFormat;
+				if (caminhoCompleto.ToLower().EndsWith("xlsx"))
+				{
+					fileFormat = Excel.XlFileFormat.xlWorkbookDefault;
+				}
+				else
+				{
+					fileFormat = Excel.XlFileFormat.xlWorkbookNormal;
+				}
+
+				xlWorkBook.SaveAs(caminhoCompleto, fileFormat, misValue, misValue, misValue, misValue,
 					Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 				xlWorkBook.Close(true, misValue, misValue);
 				xlApp.Quit();
@@ -187,6 +197,7 @@ namespace Behavsoft
 				{
 					Process.Start(caminhoCompleto);
 				}
+
 			}
 			catch (Exception excpt)
 			{
@@ -382,7 +393,17 @@ namespace Behavsoft
 					linhaCont++;
 				}
 
-				xlWorkBook.SaveAs(caminhoCompleto, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
+				object fileFormat;
+				if (caminhoCompleto.ToLower().EndsWith("xlsx"))
+				{
+					fileFormat = Excel.XlFileFormat.xlWorkbookDefault;
+				}
+				else
+				{
+					fileFormat = Excel.XlFileFormat.xlWorkbookNormal;
+				}
+
+				xlWorkBook.SaveAs(caminhoCompleto, fileFormat, misValue, misValue, misValue, misValue,
 					Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 				xlWorkBook.Close(true, misValue, misValue);
 				xlApp.Quit();

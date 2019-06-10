@@ -95,7 +95,7 @@ namespace Behavsoft
 		{
 			var oSelWc = new OpenFileDialog();
 			oSelWc.Multiselect = true;
-			oSelWc.Filter = "Excel (*.xls)|*.xls";
+			oSelWc.Filter = Util.FileDialogExcelFilesFilterWithAllFiles;
 			oSelWc.Title = "Excel Files";
 			oSelWc.CheckFileExists = true;
 			oSelWc.CheckPathExists = true;
@@ -150,7 +150,7 @@ namespace Behavsoft
 		{
 			var sabeDlg = new SaveFileDialog();
 			sabeDlg.FileName = txtSalvarEm.Text;
-			sabeDlg.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx";
+			sabeDlg.Filter = Util.FileDialogExcelFilesFilter;
 
 			var ret = sabeDlg.ShowDialog();
 
