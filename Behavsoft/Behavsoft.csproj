@@ -96,7 +96,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ExcelUtil.cs" />
-    <Compile Include="ExcelWriter.cs" />
     <Compile Include="ucJuntarExcel.xaml.cs">
       <DependentUpon>ucJuntarExcel.xaml</DependentUpon>
     </Compile>
