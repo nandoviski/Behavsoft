@@ -13,11 +13,15 @@ using System.Xml;
 
 namespace Behavsoft
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
+		enum VideoState
+		{
+			Played,
+			Stopped,
+			Paused
+		}
+
 		readonly Regex regexNumbersOnly = new Regex("[^0-9]+");
 		TimeSpan? ultimoClique;
 		Key ultimaTecla;
@@ -72,7 +76,7 @@ namespace Behavsoft
 
 					if (chkAutoStop.IsChecked.HasValue && chkAutoStop.IsChecked.Value && tempoAnalise.Minutes >= StopTime)
 					{
-						StopButton_Click_1(null, null);
+						StopButton_Click(null, null);
 					}
 					else if (tempoAnalise.Minutes >= StopTime)
 					{
@@ -186,7 +190,7 @@ namespace Behavsoft
 				}
 				else if (estadoVideo == VideoState.Played)
 				{
-					PauseButton_Click_1(null, null);
+					PauseButton_Click(null, null);
 				}
 			}
 
@@ -194,7 +198,7 @@ namespace Behavsoft
 			{
 				if (estadoVideo == VideoState.Paused || estadoVideo == VideoState.Played)
 				{
-					StopButton_Click_1(null, null);
+					StopButton_Click(null, null);
 				}
 			}
 
@@ -233,7 +237,7 @@ namespace Behavsoft
 			}
 		}
 
-		void BrowseButton_Click_1(object sender, RoutedEventArgs e)
+		void BrowseButton_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
@@ -314,14 +318,14 @@ namespace Behavsoft
 			}
 		}
 
-		void PauseButton_Click_1(object sender, RoutedEventArgs e)
+		void PauseButton_Click(object sender, RoutedEventArgs e)
 		{
 			VideoControl.Pause();
 			estadoVideo = VideoState.Paused;
 			timer.Stop();
 		}
 
-		void StopButton_Click_1(object sender, RoutedEventArgs e)
+		void StopButton_Click(object sender, RoutedEventArgs e)
 		{
 			ultimoClique = null;
 			FinalizarTodasTeclas(VideoControl.Position);
@@ -393,7 +397,7 @@ namespace Behavsoft
 			}
 		}
 
-		void sldBarraTempo_DragStarted_1(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+		void sldBarraTempo_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
 		{
 			isDragging = true;
 		}
@@ -406,19 +410,18 @@ namespace Behavsoft
 			if (VideoControl.NaturalDuration.HasTimeSpan)
 			{
 				txtTempoVideo.Text =
-				   VideoControl.Position.Hours.ToString("00") + ":" + VideoControl.Position.Minutes.ToString("00") + ":" + VideoControl.Position.Seconds.ToString("00") +
+				   VideoControl.Position.Minutes.ToString("00") + ":" + VideoControl.Position.Seconds.ToString("00") +
 				   " / " +
-				   VideoControl.NaturalDuration.TimeSpan.Hours.ToString("00") + ":" + VideoControl.NaturalDuration.TimeSpan.Minutes.ToString("00") + ":" + VideoControl.NaturalDuration.TimeSpan.Seconds.ToString("00");
+				   VideoControl.NaturalDuration.TimeSpan.Minutes.ToString("00") + ":" + VideoControl.NaturalDuration.TimeSpan.Seconds.ToString("00");
 			}
 		}
 
-		void sldBarraTempo_DragCompleted_1(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+		void sldBarraTempo_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
 		{
 			isDragging = false;
 			//VideoControl.Position = TimeSpan.FromSeconds(sldBarraTempo.Value);
 		}
 
-		// Finaliza todas as teclas aberta a o clicar no Stop
 		void FinalizarTodasTeclas(TimeSpan final)
 		{
 			var tempo = new TimeSpan(final.Hours, final.Minutes, final.Seconds);
@@ -706,13 +709,6 @@ namespace Behavsoft
 					cbTipoComportamento.Items.RemoveAt(i);
 				}
 			}
-		}
-
-		enum VideoState
-		{
-			Played,
-			Stopped,
-			Paused
 		}
 
 		void TxtAutoStop_PreviewTextInput(object sender, TextCompositionEventArgs e)
