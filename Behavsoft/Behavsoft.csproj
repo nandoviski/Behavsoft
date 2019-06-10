@@ -92,10 +92,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EPPlusUtil.cs">
+    <Compile Include="Util\EPPlusUtil.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExcelUtil.cs" />
+    <Compile Include="Util\ExcelUtil.cs" />
     <Compile Include="ucJuntarExcel.xaml.cs">
       <DependentUpon>ucJuntarExcel.xaml</DependentUpon>
     </Compile>
